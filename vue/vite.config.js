@@ -5,7 +5,9 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
   server: {
+    host: true,
     port: 5173,
+    allowedHosts: ['.up.railway.app'],
     proxy: {
       '/api': {
         target: 'https://dokonb.up.railway.app',
@@ -16,5 +18,9 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+  },
+  preview: {
+    host: true,
+    allowedHosts: ['.up.railway.app'],
   },
 })
