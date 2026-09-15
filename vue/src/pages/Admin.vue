@@ -68,12 +68,10 @@ const maxCategoryCount = computed(() => Math.max(1, ...categoryStats.value.map(c
 const recentProducts = computed(() => products.value.slice(0, 5))
 
 /* ---------- mahsulotlar ---------- */
-const search = ref('')
 const categoryFilter = ref('')
 const filteredProducts = computed(() => products.value.filter(p => {
-  const matchSearch = !search.value || (p.nomi || '').toLowerCase().includes(search.value.toLowerCase())
   const matchCategory = !categoryFilter.value || p.kategoriya === categoryFilter.value
-  return matchSearch && matchCategory
+  return matchCategory
 }))
 
 const showForm = ref(false)
@@ -236,7 +234,7 @@ onMounted(load)
 
     <!-- ============ MOBILE DRAWER ============ -->
     <div v-if="mobileMenu" class="fixed inset-0 z-[110] bg-black/70 lg:hidden" @click.self="mobileMenu = false">
-      <div class="ml-auto flex h-full w-[78%] max-w-[300px] flex-col bg-[#0e0d1c] px-[16px] py-[20px]">
+      <div class="mr-auto flex h-full w-[78%] max-w-[300px] flex-col bg-[#0e0d1c] px-[16px] py-[20px]">
         <div class="flex items-center justify-between">
           <p class="text-[15px] font-black">Menyu</p><button @click="mobileMenu = false"
             class="rounded-[9px] p-[7px] text-white/60">
@@ -344,12 +342,6 @@ onMounted(load)
           <section v-else-if="tab === 'products'" class="fade">
             <div class="mb-[14px] flex flex-col gap-[10px] md:flex-row md:items-center md:justify-between">
               <div class="flex flex-1 flex-col gap-[9px] sm:flex-row">
-                <div
-                  class="flex h-[42px] flex-1 items-center gap-[8px] rounded-[10px] border border-white/10 bg-[#12111f] px-[12px]">
-                  <Search :size="15" class="text-white/40" />
-                  <input v-model="search" placeholder="Mahsulot qidirish..."
-                    class="h-full w-full bg-transparent text-[12px] outline-none" />
-                </div>
                 <select v-model="categoryFilter"
                   class="h-[42px] rounded-[10px] border border-white/10 bg-[#12111f] px-[11px] text-[12px] outline-none">
                   <option value="">Barcha kategoriya</option>

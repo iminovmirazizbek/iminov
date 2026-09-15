@@ -47,7 +47,7 @@ const money = (n) => n == null ? '—' : new Intl.NumberFormat('uz-UZ').format(N
                 </div>
             </div>
         </section>
-        <section class="mt-[30px]">
+        <section id="products" class="mt-[30px]">
             <div class="mb-[13px] flex items-center justify-between">
                 <h2 class="text-[21px] font-black">🔥 Mashhur mahsulotlar</h2>
                 <RouterLink to="/kategoriya/telefon" class="text-[12px] text-white/45 hover:text-[#19f078]">Barchasini

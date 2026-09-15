@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, RouterLink } from 'vue-router'
 import { LockKeyhole, ShieldCheck, Eye, EyeOff } from 'lucide-vue-next'
 import { api } from '../services/api'
 
@@ -70,6 +70,7 @@ async function login() {
         </button>
       </form>
       <p class="mt-[16px] text-center text-[10px] text-white/25">Faqat administratorlar uchun</p>
+      <RouterLink to="/login" class="mt-[12px] block text-center text-[12px] font-bold text-[#a78bfa] hover:underline">Oddiy login sahifasiga o'tish</RouterLink>
     </div>
   </div>
 </template>
