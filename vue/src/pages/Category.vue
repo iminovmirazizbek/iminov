@@ -23,7 +23,7 @@ const filtered = computed(() => products.value.filter(p => (p.kategoriya === rou
         <div v-else-if="!filtered.length"
             class="mt-[25px] rounded-[15px] border border-white/10 p-[35px] text-center text-white/40">Bu kategoriyada
             mahsulot topilmadi.</div>
-        <div v-else class="mt-[20px] flex flex-col gap-[12px] md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        <div v-else class="mt-[20px] grid grid-cols-2 gap-[10px] md:grid-cols-3 md:gap-[12px] lg:grid-cols-4 xl:grid-cols-5">
             <ProductCard v-for="p in filtered" :key="p.id" :product="p" @add="$emit('add-cart', $event)" />
         </div>
     </div>

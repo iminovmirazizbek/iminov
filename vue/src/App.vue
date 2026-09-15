@@ -31,7 +31,7 @@ const cats=[['telefon','Telefonlar',Smartphone],['noutbuk','Noutbuklar',Laptop],
 
 <template>
 <div class="min-h-screen bg-[#020807] text-white">
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#06100d]/95 backdrop-blur-xl">
+  <header v-if="!route.path.startsWith('/admin')" class="sticky top-0 z-50 border-b border-white/10 bg-[#06100d]/95 backdrop-blur-xl">
     <div class="mx-auto flex h-[72px] max-w-[1440px] items-center gap-[18px] px-[18px] lg:px-[30px]">
       <button class="lg:hidden rounded-[12px] border border-white/10 p-[10px]" @click="open=!open"><X v-if="open" :size="20"/><Menu v-else :size="20"/></button>
       <RouterLink to="/#products" class="flex shrink-0 items-center gap-[8px] text-[22px] font-black tracking-[-1px]"><span class="flex h-[36px] w-[36px] items-center justify-center rounded-[11px] bg-[#19f078] text-black">S</span>Shop<span class="text-[#19f078]">Uz</span></RouterLink>

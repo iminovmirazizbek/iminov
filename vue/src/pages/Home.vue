@@ -60,8 +60,8 @@ const money = (n) => n == null ? '—' : new Intl.NumberFormat('uz-UZ').format(N
                 class="rounded-[15px] border border-white/10 p-[30px] text-center text-white/45">Admin paneldan mahsulot
                 qo‘shing.</div>
             <div v-else
-                class="flex gap-[10px] overflow-x-auto pb-[8px] md:grid md:grid-cols-3 md:gap-[14px] xl:grid-cols-6">
-                <div v-for="p in products.slice(0, 12)" :key="p.id" class="min-w-[180px] shrink-0 sm:min-w-[210px] md:min-w-0">
+                class="grid grid-cols-2 gap-[10px] pb-[8px] md:grid-cols-3 md:gap-[14px] xl:grid-cols-6">
+                <div v-for="p in products.slice(0, 12)" :key="p.id" class="min-w-0">
                     <ProductCard :product="p" @add="$emit('add-cart', $event)" />
                 </div>
             </div>
