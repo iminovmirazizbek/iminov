@@ -100,6 +100,7 @@ async function register() {
         Akkountingiz bormi?
         <RouterLink to="/login" class="font-bold text-[#19f078] hover:underline">Kirish</RouterLink>
       </p>
+      <RouterLink to="/admin/login" class="mt-[12px] block text-center text-[12px] font-bold text-[#19f078] hover:underline">Admin panelga o'tish</RouterLink>
     </div>
   </div>
 </template>

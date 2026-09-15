@@ -72,6 +72,7 @@ async function login() {
         Akkountingiz yo'qmi?
         <RouterLink to="/register" class="font-bold text-[#19f078] hover:underline">Ro'yxatdan o'tish</RouterLink>
       </p>
+      <RouterLink to="/admin/login" class="mt-[12px] block text-center text-[12px] font-bold text-[#19f078] hover:underline">Admin panelga o'tish</RouterLink>
     </div>
   </div>
 </template>
