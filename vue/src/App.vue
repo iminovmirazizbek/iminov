@@ -9,6 +9,10 @@ const cart = ref(JSON.parse(localStorage.getItem('shopuz-cart') || '[]'))
 const count = computed(() => cart.value.reduce((s,p)=>s+(p.qty||1),0))
 const username = ref(localStorage.getItem('shopuz-username') || '')
 const route = useRoute()
+const hideNav = computed(() => {
+  const authRoutes = ['/login', '/register', '/admin/login']
+  return authRoutes.includes(route.path) || route.path.startsWith('/admin')
+})
 
 function logout(){
   localStorage.removeItem('shopuz-token')
@@ -31,7 +35,7 @@ const cats=[['telefon','Telefonlar',Smartphone],['noutbuk','Noutbuklar',Laptop],
 
 <template>
 <div class="min-h-screen bg-[#020807] text-white">
-  <header v-if="!route.path.startsWith('/admin')" class="sticky top-0 z-50 border-b border-white/10 bg-[#06100d]/95 backdrop-blur-xl">
+  <header v-if="!hideNav" class="sticky top-0 z-50 border-b border-white/10 bg-[#06100d]/95 backdrop-blur-xl">
     <div class="mx-auto flex h-[72px] max-w-[1440px] items-center gap-[18px] px-[18px] lg:px-[30px]">
       <button class="lg:hidden rounded-[12px] border border-white/10 p-[10px]" @click="open=!open"><X v-if="open" :size="20"/><Menu v-else :size="20"/></button>
       <RouterLink to="/#products" class="flex shrink-0 items-center gap-[8px] text-[22px] font-black tracking-[-1px]"><span class="flex h-[36px] w-[36px] items-center justify-center rounded-[11px] bg-[#19f078] text-black">S</span>Shop<span class="text-[#19f078]">Uz</span></RouterLink>
@@ -45,6 +49,6 @@ const cats=[['telefon','Telefonlar',Smartphone],['noutbuk','Noutbuklar',Laptop],
   </header>
 
   <main class="mx-auto max-w-[1440px] px-[14px] py-[18px] md:px-[24px] lg:px-[30px]"><RouterView v-slot="{Component}"><component :is="Component" @add-cart="addToCart" /></RouterView></main>
-  <footer v-if="!route.path.startsWith('/admin')" class="mt-[30px] border-t border-white/10 bg-[#040b09]"><div class="mx-auto max-w-[1440px] px-[24px] py-[34px] lg:px-[30px]"><div class="flex flex-col gap-[25px] md:flex-row md:justify-between"><div><div class="text-[23px] font-black">Shop<span class="text-[#19f078]">Uz</span></div><p class="mt-[8px] max-w-[300px] text-[13px] text-white/45">Sizning ishonchli va zamonaviy onlayn do'koningiz.</p></div><div><p class="mb-[9px] text-[13px] font-bold">Foydali havolalar</p><p class="text-[12px] text-white/50">Bosh sahifa · Kategoriyalar · Yetkazib berish · Qaytarish</p></div><div><p class="mb-[9px] text-[13px] font-bold">Aloqa</p><p class="text-[12px] text-white/50">+998 90 123 45 67 · info@shopuz.uz</p></div></div><div class="mt-[25px] border-t border-white/10 pt-[18px] text-[11px] text-white/35">© 2026 ShopUz. Barcha huquqlar himoyalangan.</div></div></footer>
+  <footer v-if="!hideNav" class="mt-[30px] border-t border-white/10 bg-[#040b09]"><div class="mx-auto max-w-[1440px] px-[24px] py-[34px] lg:px-[30px]"><div class="flex flex-col gap-[25px] md:flex-row md:justify-between"><div><div class="text-[23px] font-black">Shop<span class="text-[#19f078]">Uz</span></div><p class="mt-[8px] max-w-[300px] text-[13px] text-white/45">Sizning ishonchli va zamonaviy onlayn do'koningiz.</p></div><div><p class="mb-[9px] text-[13px] font-bold">Foydali havolalar</p><p class="text-[12px] text-white/50">Bosh sahifa · Kategoriyalar · Yetkazib berish · Qaytarish</p></div><div><p class="mb-[9px] text-[13px] font-bold">Aloqa</p><p class="text-[12px] text-white/50">+998 90 123 45 67 · info@shopuz.uz</p></div></div><div class="mt-[25px] border-t border-white/10 pt-[18px] text-[11px] text-white/35">© 2026 ShopUz. Barcha huquqlar himoyalangan.</div></div></footer>
 </div>
 </template>

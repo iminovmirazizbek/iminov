@@ -10,11 +10,27 @@ const demoProducts = [
 
 function normalizeProduct(product) {
   if (!product) return product
+
   const image = product.image_url || product.img_url || product.image || product.rasm_url || product.rasm || null
-  return {
+  const normalized = {
     ...product,
+    nomi: product.nomi ?? product.name ?? product.title ?? 'Mahsulot',
+    puli: product.puli ?? product.price ?? product.narx ?? product.cost ?? 0,
+    kategoriya: product.kategoriya ?? product.category ?? product.slug ?? 'telefon',
+    oyiga_qancha: product.oyiga_qancha ?? product.monthly_payment ?? product.oyiga ?? product.payment ?? null,
+    necha_oyga: product.necha_oyga ?? product.necha_oy ?? product.installments ?? product.oylar_soni ?? 12,
+    reyting: product.reyting ?? product.rating ?? 4.8,
+    izohlar_soni: product.izohlar_soni ?? product.reviews_count ?? product.comment_count ?? 0,
+    tavsif: product.tavsif ?? product.description ?? product.izoh ?? '',
+    mavjud: product.mavjud ?? product.available ?? true,
     image_url: image && image.replace(/^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?/, API_ORIGIN).replace(/^\/(?!\/)/, `${API_ORIGIN}/`),
   }
+
+  if (normalized.oyiga_qancha !== null && normalized.oyiga_qancha !== undefined && normalized.necha_oyga === 12 && Number(normalized.oyiga_qancha) > 0) {
+    normalized.necha_oyga = Number(normalized.necha_oyga) || 12
+  }
+
+  return normalized
 }
 
 function authHeaders(extra = {}) {
