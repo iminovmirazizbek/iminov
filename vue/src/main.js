@@ -19,6 +19,9 @@ const router = createRouter({ history: createWebHistory(), routes: [
  {path:'/admin', component:Admin, meta:{admin:true}}
 ]})
 router.beforeEach((to) => {
- if (to.meta.admin && !localStorage.getItem('shopuz-admin-token')) return '/admin/login'
+  const publicRoutes = ['/login', '/register', '/admin/login']
+
+  if (to.meta.admin && !localStorage.getItem('shopuz-admin-token')) return '/admin/login'
+  if (!to.meta.admin && !publicRoutes.includes(to.path) && !localStorage.getItem('shopuz-token')) return '/login'
 })
 createApp(App).use(router).mount('#app')
